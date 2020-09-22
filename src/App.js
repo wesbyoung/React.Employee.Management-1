@@ -12,7 +12,8 @@ export default class App extends Component {
     super();
 
     this.state = {
-      employees: []
+      employees: [],
+      employeeInformation: {}
     }
   }
 
@@ -27,6 +28,13 @@ export default class App extends Component {
       })
   }
 
+  handleSelectEmployee = (empObj) => {
+    this.setState({
+      employeeInformation: empObj
+    })
+    // console.log(empObj);
+  }
+
   render() {
     // console.log("Rendered")
     return (
@@ -36,7 +44,7 @@ export default class App extends Component {
         <main>
           <div className="container">
             <Switch>
-              <Route exact path="/" render={() => <Main employees={this.state.employees} />} />
+              <Route exact path="/" render={() => <Main employees={this.state.employees} handleSelectEmployee={this.handleSelectEmployee} employeeInformation={this.state.employeeInformation}  />} />
               <Route exact path="/something" render={() => <Something />} />
             </Switch>
           </div>

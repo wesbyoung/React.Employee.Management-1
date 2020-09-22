@@ -47,7 +47,7 @@
     },
     {
         "name": "Nisarg Patel",
-        "age": "22",
+        "age": 22,
         "location": "Methuen",
         "occupation": "Machine Learning Engineer",
         "skills": [
