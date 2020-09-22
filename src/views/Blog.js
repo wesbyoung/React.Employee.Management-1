@@ -1,27 +1,32 @@
 import React, { Component } from 'react'
+import Post from '../components/Post';
 
 export default class Blog extends Component {
+    constructor() {
+        super()
+
+        this.state = {
+            posts: []
+        }
+    }
+
+    componentDidMount() {
+        fetch('http://localhost:5000/api/blog')
+        .then(res => res.json())
+        .then(data => this.setState({ posts:data }))
+    }
+
     render() {
+        let posts = this.state.posts;
+
         return (
-            <div class="row">
-                <div class="col-md-12">
-                    <ul class="list-group">
-                        {/* {% if current_user.is_authenticated %} */}
-                        {/* {% for p in posts %} */}
-                        <li class="list-group-item">
-                            <p>
-                                <h5>
-                                    {/* <a href="{{ url_for('blog.get_post', id=p.id) }}">{{ p.body }}</a> */}
-                                </h5>
-                            </p>
-                            <cite>
-                                {/* &mdash; {{ "{} {}".format(p.user.first_name, p.user.last_name) }} @ {{ moment(p.created_on).fromNow() }} */}
-                            </cite>
-                        </li>
-                        {/* // {% endfor %} */}
-                        {/* // {% else %} */}
+            <div className="row">
+                <div className="col-md-12">
+                    <ul className="list-group">
+                        {posts.map(post => (
+                            <Post post={post} key={post.id} />
+                        ))}
                         <h3>No posts to show</h3>
-                        {/* // {% endif %} */}
                     </ul>
                 </div>
             </div>
