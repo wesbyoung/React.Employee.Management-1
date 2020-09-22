@@ -6,7 +6,7 @@ export default class Information extends Component {
         console.log(this.props.attrName);
         console.log(this.props.attrValue);
         return (
-            <li className="list-group-item"><strong>{this.props.attrName}</strong> <span id="name" className="float-right">{this.props.attrValue}</span></li>
+            <li className="list-group-item"><strong style={{textTransform: 'capitalize'}}>{this.props.attrName}</strong> <span id="name" className="float-right">{this.props.attrValue}</span></li>
         )
     }
 }

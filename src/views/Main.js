@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Employees from '../components/Employees'
 import InformationList from '../components/InformationList'
+import SkillList from '../components/SkillList'
 
 export default class Main extends Component {
     render() {
@@ -17,9 +18,7 @@ export default class Main extends Component {
                   <InformationList employeeInformation={this.props.employeeInformation} />
                 </div>
                 <div id="skills-container" className="card" style={{ width: "400px"}}>
-                  <div className="card-header">Skills</div>
-                  <ul id="skills" className="list-group list-group-flush">
-                  </ul>
+                  <SkillList skills={this.props.employeeInformation.skills} />
                 </div>
               </div>
             </div>
