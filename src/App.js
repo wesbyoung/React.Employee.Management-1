@@ -4,6 +4,7 @@ import Header from './components/Header';
 import { Switch, Route } from 'react-router-dom';
 import Main from './views/Main';
 import Something from './views/Something';
+import Blog from './views/Blog';
 
 
 export default class App extends Component {
@@ -46,6 +47,7 @@ export default class App extends Component {
             <Switch>
               <Route exact path="/" render={() => <Main employees={this.state.employees} handleSelectEmployee={this.handleSelectEmployee} employeeInformation={this.state.employeeInformation}  />} />
               <Route exact path="/something" render={() => <Something />} />
+              <Route exact path="/blog" render={() => <Blog />} />
             </Switch>
           </div>
         </main>
