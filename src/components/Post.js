@@ -3,36 +3,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 export default class Post extends Component {
-    constructor() {
-        super();
-
-        this.state = {
-            post: {},
-            user: {
-                firstName: '',
-                lastName: ''
-            }
-        }
-    }
-
-    componentDidMount() {
-        // console.log(this.props);
-
-        fetch(`http://localhost:5000/api/blog/${this.props.match.params.postId}`)
-            .then(res => res.json())
-            .then(data => {
-                this.setState({
-                    post: data,
-                    user: { 
-                        firstName: data.user.first_name,
-                        lastName: data.user.last_name
-                    }
-                })
-            })
-    }
-
     render() {
-        let post = this.state.post;
+        let post = this.props.post;
+        // console.log(post)
 
         return (
             <li className="list-group-item">
@@ -44,7 +17,7 @@ export default class Post extends Component {
                 </p>
                 <cite>
                     {/* &mdash; {{ "{} {}".format(p.user.first_name, p.user.last_name) }} @ {{ moment(p.created_on).fromNow() }} */}
-                    &mdash; {this.state.user.firstName} {this.state.user.lastName} @ {moment(post.created_on).fromNow()}
+                    &mdash; {post.user.first_name} {post.user.last_name} @ {moment(post.created_on).fromNow()}
                 </cite>
             </li>
         )
