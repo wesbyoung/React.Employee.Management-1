@@ -6,6 +6,9 @@ import Main from './views/Main';
 import Something from './views/Something';
 import Blog from './views/Blog';
 import BlogPost from './components/BlogPost';
+import Cart from './views/Cart';
+import Martketplace from './views/Martketplace';
+import './App.css';
 
 
 export default class App extends Component {
@@ -15,7 +18,10 @@ export default class App extends Component {
 
     this.state = {
       employees: [],
-      employeeInformation: {}
+      employeeInformation: {},
+      products: [],
+      cart: [],
+      cartTotal: 0
     }
   }
 
@@ -28,6 +34,12 @@ export default class App extends Component {
           employees: data
          })
       })
+
+    fetch('http://localhost:5000/api/shop')
+      .then(response => response.json())
+      .then(data => this.setState({
+        products: data
+      }));
   }
 
   handleSelectEmployee = (empObj) => {
@@ -37,11 +49,33 @@ export default class App extends Component {
     // console.log(empObj);
   }
 
+  // updateTotal = (cartProducts) => {
+  //   var count = 0; 
+  //   for (const p of cartProducts) {
+  //       count += p.price;
+  //   }
+  //   return count
+  // }
+
+  handleAddToCart = productObj => {
+    var count = this.state.cartTotal;
+
+    this.setState({
+      cart: this.state.cart.concat(productObj)
+    })
+
+    this.setState({
+      cartTotal: count += productObj.price
+    })
+  }
+
   render() {
+    // console.log(this.state.products);
     // console.log("Rendered")
+
     return (
       <div>
-        <Header />
+        <Header cart={this.state.cart} cartTotal={this.state.cartTotal} />
 
         <main>
           <div className="container">
@@ -50,6 +84,8 @@ export default class App extends Component {
               <Route exact path="/something" render={() => <Something />} />
               <Route exact path="/blog" render={() => <Blog />} />
               <Route exact path="/blog/:postId" render={({ match }) => <BlogPost match={match} />} />
+              <Route exact path="/marketplace" render={() => <Martketplace products={this.state.products} handleAddToCart={this.handleAddToCart} />} />
+              <Route exact path="/cart" render={() => <Cart />} />
             </Switch>
           </div>
         </main>
