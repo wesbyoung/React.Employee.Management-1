@@ -6,7 +6,7 @@ export default class Product extends Component {
         const handleAddToCart = this.props.handleAddToCart;
 
         return (
-            <div className="col-md-4">
+            <div className="col-md-12">
                 <figure className="card card-product">
                     <div className="img-wrap">
                         <img src={ product.image } className="img-fluid" alt={ product.name } />

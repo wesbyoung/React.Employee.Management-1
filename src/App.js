@@ -27,7 +27,7 @@ export default class App extends Component {
 
   componentDidMount() {
     // console.log("Mounted")
-    fetch('./data.json')
+    fetch('https://flaskbook-api.herokuapp.com/api/shop')
       .then(response => response.json())
       .then(data => {
         this.setState({ 
@@ -35,7 +35,7 @@ export default class App extends Component {
          })
       })
 
-    fetch('http://localhost:5000/api/shop')
+    fetch('https://flaskbook-api.herokuapp.com/api/shop')
       .then(response => response.json())
       .then(data => this.setState({
         products: data
